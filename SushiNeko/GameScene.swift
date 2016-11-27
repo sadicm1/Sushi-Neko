@@ -27,6 +27,7 @@ class GameScene: SKScene {
   var playButton: MSButtonNode!
   var healthBar: SKSpriteNode!
   var scoreLabel: SKLabelNode!
+  var mainMenu: SKSpriteNode!
   
   // game management
   var state: GameState = .title
@@ -57,6 +58,7 @@ class GameScene: SKScene {
     self.playButton = self.childNode(withName: "playButton") as! MSButtonNode
     self.healthBar = self.childNode(withName: "healthBar") as! SKSpriteNode
     self.scoreLabel = self.childNode(withName: "scoreLabel") as! SKLabelNode
+    self.mainMenu = self.childNode(withName: "mainMenu") as! SKSpriteNode
     
     // Setup chopstick connections
     sushiBasePiece.connectChopsticks()
@@ -70,8 +72,7 @@ class GameScene: SKScene {
     
     // setup play button selected handler
     playButton.selectedHandler = {
-      // start game
-      self.state = .ready
+      self.moveMenuDown()
     }
     
   }
@@ -239,6 +240,17 @@ class GameScene: SKScene {
       skView?.presentScene(scene)
       
     }
+  }
+  
+  func moveMenuDown() {
+    // move main menu down
+    
+    // move menu down before starting the game
+    let moveDown = SKAction(named: "moveMenuDown")
+    mainMenu.run(moveDown!)
+    
+    // start game
+    self.state = .ready
   }
   
 }

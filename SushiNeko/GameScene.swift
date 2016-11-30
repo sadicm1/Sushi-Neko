@@ -137,7 +137,7 @@ class GameScene: SKScene {
         
         // Drop all sushi pieces down one place
         for sushiPiece in sushiTower {
-            let dropAction = SKAction.move(by: CGVector(dx: 0.0, dy: -55.0), duration: 0.10)
+            let dropAction = SKAction.move(by: CGVector(dx: 0.0, dy: -55.0), duration: 0.010)
             sushiPiece.run(dropAction)
             
             // Reduce z position to stop z position climb over UI
@@ -170,7 +170,7 @@ class GameScene: SKScene {
         
         // Add on top of last piece, default on first piece
         let lastPiecePosition = lastPiece?.position ?? sushiBasePiece.position
-        newPiece.position = lastPiecePosition + CGPoint(x: 0.0, y: 55.0)
+        newPiece.position.y = lastPiecePosition.y + 55.0
         
         // Increment Z to ensure it is on top of the last piece
         let lastPieceZPosition = lastPiece?.zPosition  ?? sushiBasePiece.zPosition
